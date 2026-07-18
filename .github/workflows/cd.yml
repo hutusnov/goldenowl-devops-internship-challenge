@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "src/**"
+      - ".github/workflows/cd.yml"
 
 permissions:
   id-token: write
