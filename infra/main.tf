@@ -140,7 +140,11 @@ resource "aws_iam_role" "github_actions" {
           "token.actions.githubusercontent.com:aud" = "sts.amazonaws.com"
         }
         StringLike = {
-          "token.actions.githubusercontent.com:sub" = "repo:${var.github_repo}:ref:refs/heads/main"
+          # GitHub appends a stable numeric ID to the owner/repo slugs, and
+          # switches to "environment:<name>" (instead of "ref:refs/heads/...")
+          # when the job that requests the token declares `environment:` -
+          # the deploy job here uses `environment: PROD`.
+          "token.actions.githubusercontent.com:sub" = "repo:${split("/", var.github_repo)[0]}*/${split("/", var.github_repo)[1]}*:environment:PROD"
         }
       }
     }]
