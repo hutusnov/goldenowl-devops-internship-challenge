@@ -14,7 +14,7 @@
     "author": "Golden Owl",
     "license": "ISC",
     "dependencies": {
-        "dotenv": "^16.3.1",
+        "dotenv": "^17.4.2",
         "eslint-plugin-jest": "^27.4.0",
         "express": "^4.18.2",
         "nodemon": "^3.0.1"
