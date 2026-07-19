@@ -4,6 +4,15 @@ updates:
     directory: "/src"
     schedule:
       interval: "weekly"
+    # Major bumps need a deliberate look (breaking changes, migration work -
+    # e.g. ESLint 9/10 dropping .eslintrc.json support). Only propose
+    # minor/patch automatically; group them so it's 1 PR to review, not many.
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    groups:
+      npm-minor-patch:
+        update-types: ["minor", "patch"]
 
   - package-ecosystem: "github-actions"
     directory: "/"
